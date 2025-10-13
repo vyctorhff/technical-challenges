@@ -1,0 +1,52 @@
+version: "3"
+
+services:
+  mysql-product:
+    image: mysql:8.0.43-debian
+    container_name: ecommerce-mysql-product
+    ports:
+      - "${DB_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DB_NAME}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      TZ: 'UTC'
+    volumes:
+      - ecommerce-storage-mysql:/var/lib/mysql
+      - ./db-init:/docker-entrypoint-initdb.d
+    networks:
+      - app-net
+
+  kafka:
+    image: apache/kafka:4.1.0
+    container_name: ecommerce-kafka
+    ports:
+      - "9092:9092"
+    networks:
+      - app-net
+
+  elastic-search-products:
+    image: elasticsearch:9.1.5
+    container_name: elastic-search-products
+    environment:
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      - app-net
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+
+volumes:
+  ecommerce-storage-mysql:
+    driver: local
+
+  ecommerce-storage-elastic-search:
+    driver: local
+
+networks:
+  app-net:
+    driver: bridge
