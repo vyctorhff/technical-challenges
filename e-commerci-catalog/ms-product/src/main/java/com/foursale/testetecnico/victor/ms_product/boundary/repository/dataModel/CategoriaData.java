@@ -19,9 +19,14 @@ public class CategoriaData {
     private String nome;
 
     public CategoriaData(Categoria categoria) {
+        this.id = categoria.getId();
+        this.nome = categoria.getNome();
     }
 
     public Categoria toModel() {
-        return null;
+        Categoria categoria = new Categoria();
+        categoria.setId(this.id);
+        categoria.setNome(this.nome);
+        return categoria;
     }
 }

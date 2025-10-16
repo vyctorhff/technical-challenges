@@ -27,12 +27,26 @@ public class ProdutoData {
     private EstoqueData estoque;
 
     public ProdutoData(Produto produto) {
-        categoria = new CategoriaData(produto.getCategoria());
+        this.id = produto.getId();
+        this.nome = produto.getNome();
+        this.preco = produto.getPreco();
+        this.descricao = produto.getDescricao();
+        this.dataCriacao = produto.getDataCriacao();
+        this.dataAtualizacao = produto.getDataAtualizacao();
+
         estoque = new EstoqueData(produto.getEstoque());
+        categoria = new CategoriaData(produto.getCategoria());
     }
 
     public Produto toModel() {
         Produto produto = new Produto();
+        produto.setId(this.id);
+        produto.setNome(this.nome);
+        produto.setPreco(this.preco);
+        produto.setDescricao(this.descricao);
+        produto.setDataCriacao(this.dataCriacao);
+        produto.setDataAtualizacao(this.dataAtualizacao);
+
         produto.setCategoria(categoria.toModel());
         produto.setEstoque(estoque.toModel());
         return produto;
