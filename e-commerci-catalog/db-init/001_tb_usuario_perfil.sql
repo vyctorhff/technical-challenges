@@ -1,9 +1,9 @@
 CREATE TABLE tb_usuario (
     id BINARY(16) PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
+    nome VARCHAR(150) NOT NULL,
     password VARCHAR(100) NOT NULL,
-    email VARCHAR(50) NOT NULL,
-    cpf VARCHAR(50) UNIQUE NOT NULL
+    email VARCHAR(30) NOT NULL,
+    cpf VARCHAR(11) UNIQUE NOT NULL
 );
 
 CREATE TABLE tb_perfil (

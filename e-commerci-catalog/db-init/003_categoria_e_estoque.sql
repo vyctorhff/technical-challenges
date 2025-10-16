@@ -1,0 +1,11 @@
+CREATE TABLE tb_categoria (
+    id BINARY(16) PRIMARY KEY,
+    nome VARCHAR(150) NOT NULL,
+    dt_criacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    dt_atualizacao DATETIME NOT NUL DEFAULT CURRENT_TIMESTAMPL
+);
+
+CREATE TABLE tb_estoque (
+    id BINARY(16) PRIMARY KEY,
+    qt_disponivel INTEGER NOT NULL
+);
