@@ -29,18 +29,23 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
+//	implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
 	implementation("org.springframework.kafka:spring-kafka")
 
 	implementation("com.auth0:java-jwt:4.4.0")
 	implementation("org.apache.commons:commons-lang3:3.19.0")
+	implementation("com.google.code.gson:gson:2.13.2")
 
 	compileOnly("org.projectlombok:lombok")
+
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	runtimeOnly("com.mysql:mysql-connector-j")
 	annotationProcessor("org.projectlombok:lombok")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.kafka:spring-kafka-test")
 	testImplementation("org.springframework.security:spring-security-test")
+
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class HelloKafkaController {
 
+    // TODO: remover
+
     private final ProdutorKafka produtorKafka;
 
     @GetMapping("/{msg}")

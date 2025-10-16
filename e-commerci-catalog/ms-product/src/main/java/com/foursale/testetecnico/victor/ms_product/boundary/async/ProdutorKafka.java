@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class ProdutorKafka {
-
+    // TODO: remover
     private final KafkaTemplate<String, String> kafkaTemplate;
 
     public void send(String message) {
