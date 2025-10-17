@@ -22,7 +22,9 @@ public class RemoverProdutoUserCase {
     private final EnviarMensagemEstoque enviarMensagemEstoque;
 
     public void remover(Produto produto) throws RemoverProdutoException, EnviarProdutoException {
-        // TODO: validar se existe?
+        if (produtoRepository.exists(produto.getId())) {
+            throw new RemoverProdutoException("Proudto não encontrado");
+        }
 
         log.info("Removendo produto");
         produtoRepository.remover(produto);

@@ -6,6 +6,8 @@ import com.foursale.testetecnico.victor.ms_product.core.model.Produto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @Repository
 @RequiredArgsConstructor
 public class ProdutoJdbcRepositoryImpl implements ProdutoRepository {
@@ -22,5 +24,10 @@ public class ProdutoJdbcRepositoryImpl implements ProdutoRepository {
     public void remover(Produto produto) {
         ProdutoData data = new ProdutoData(produto);
         this.produtoSpringJdbcRepository.delete(data);
+    }
+
+    @Override
+    public boolean exists(UUID id) {
+        return this.produtoSpringJdbcRepository.existsById(id);
     }
 }

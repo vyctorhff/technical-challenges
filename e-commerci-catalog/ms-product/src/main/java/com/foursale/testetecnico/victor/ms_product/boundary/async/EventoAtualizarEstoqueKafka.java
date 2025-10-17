@@ -15,13 +15,13 @@ import org.springframework.stereotype.Service;
 public class EventoAtualizarEstoqueKafka implements EnviarMensagemEstoque {
 
     @Value("${async.produto.topico}")
-    private String eventoProdutoTopico;
+    private String topico;
 
     private final KafkaTemplate<String, String> kafkaTemplate;
 
     @Override
     public void enviar(Produto produto, OperacaoEstoque operacao) {
         EventoAtualizarEstoqueBody body = new EventoAtualizarEstoqueBody(produto, operacao);
-        kafkaTemplate.send(eventoProdutoTopico, new Gson().toJson(body));
+        kafkaTemplate.send(topico, new Gson().toJson(body));
     }
 }

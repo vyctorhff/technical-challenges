@@ -1,8 +1,8 @@
 package com.foursale.testetecnico.victor.ms_product.core.exception;
 
-public class CriarProdutoValidatiorException extends ApplicationException {
+public class CriarProdutoException extends ApplicationException {
 
-    public CriarProdutoValidatiorException(String message) {
+    public CriarProdutoException(String message) {
         super(message);
     }
 }

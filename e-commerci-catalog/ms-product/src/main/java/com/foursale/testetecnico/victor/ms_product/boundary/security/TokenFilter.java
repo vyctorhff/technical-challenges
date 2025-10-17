@@ -36,11 +36,6 @@ public class TokenFilter extends OncePerRequestFilter {
 
         if (optToken.isPresent()) {
             var subject = tokenService.validate(optToken.get());
-
-            // TODO: check later it will be necessary
-//            UserDetails userDetails = authenticatioService.loadUserByUsername(subject);
-//            UsernamePasswordAuthenticationToken userAuth = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-
             authenticatioService.setSpringUserAuth(subject);
         }
 

@@ -19,4 +19,8 @@ public class ApplicationException extends RuntimeException {
     public boolean hasErrors() {
         return !this.erros.isEmpty();
     }
+
+    public List<String> getErros() {
+        return erros;
+    }
 }
