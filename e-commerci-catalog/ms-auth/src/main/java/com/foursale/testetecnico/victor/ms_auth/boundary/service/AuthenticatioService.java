@@ -3,7 +3,6 @@ package com.foursale.testetecnico.victor.ms_auth.boundary.service;
 import com.foursale.testetecnico.victor.ms_auth.boundary.repository.UserRepository;
 import com.foursale.testetecnico.victor.ms_auth.boundary.repository.dataModel.UsuarioData;
 import com.foursale.testetecnico.victor.ms_auth.boundary.security.model.UserAuthentication;
-import com.foursale.testetecnico.victor.ms_auth.core.model.Usuario;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,8 +18,9 @@ public class AuthenticatioService implements UserDetailsService {
     private final UserRepository repository;
 
     @Override
-    public UserDetails loadUserByUsername(String enrollment) throws UsernameNotFoundException {
-        UsuarioData data = repository.findByMatricula(Integer.parseInt(enrollment));
+    public UserDetails loadUserByUsername(String nome) throws UsernameNotFoundException {
+        UsuarioData data = repository.findByNome(nome);
+        System.out.println("Encontrei isso:" + data.getNome());
         return new UserAuthentication(data.toModel());
     }
 

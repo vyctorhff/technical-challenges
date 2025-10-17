@@ -20,7 +20,7 @@ public class LoginService {
     private final TokenService tokenService;
 
     public TokenResponseDTO login(LoginRequestDTO dto) {
-        var user = new UsernamePasswordAuthenticationToken(dto.enrollment(), dto.password());
+        var user = new UsernamePasswordAuthenticationToken(dto.nome(), dto.password());
         var authenticate = this.authenticationManager.authenticate(user);
 
         UserAuthentication principal = (UserAuthentication) authenticate.getPrincipal();

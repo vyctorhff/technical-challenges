@@ -21,7 +21,7 @@ public class UserAuthentication implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (PerfilEnum.ADMIN.getName().equals(user.getEnrollment())) {
+        if (PerfilEnum.ADMIN.getName().equals(user.getNome())) {
             return List.of(
                     new SimpleGrantedAuthority("admin")
             );
@@ -39,7 +39,7 @@ public class UserAuthentication implements UserDetails {
 
     @Override
     public String getUsername() {
-        return String.valueOf(user.getName());
+        return String.valueOf(user.getNome());
     }
 
     @Override

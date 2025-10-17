@@ -4,8 +4,10 @@ import com.foursale.testetecnico.victor.ms_auth.boundary.repository.dataModel.Us
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface UserRepository extends CrudRepository<UsuarioData, String> {
+import java.util.UUID;
 
-    UsuarioData findByMatricula(Integer matricula);
+@Repository
+public interface UserRepository extends CrudRepository<UsuarioData, UUID> {
+
+    UsuarioData findByNome(String nome);
 }

@@ -50,7 +50,7 @@ public class TokenService {
         try {
             return JWT.create()
                     .withIssuer(getIssuer())
-                    .withSubject(user.getId())
+                    .withSubject(user.getId().toString())
                     .withExpiresAt(getExpire())
                     .sign(getAlgorithm());
         } catch (JWTCreationException e) {

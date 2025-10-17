@@ -1,5 +1,7 @@
-package com.foursale.testetecnico.victor.ms_auth.boundary.http.dtos;
+package com.foursale.testetecnico.victor.ms_auth.boundary.http;
 
+import com.foursale.testetecnico.victor.ms_auth.boundary.http.dtos.LoginRequestDTO;
+import com.foursale.testetecnico.victor.ms_auth.boundary.http.dtos.TokenResponseDTO;
 import com.foursale.testetecnico.victor.ms_auth.boundary.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/auth/v1")
+@RequestMapping("/v1/auth")
 @RequiredArgsConstructor
 public class AuthController {
 
@@ -19,5 +21,10 @@ public class AuthController {
     public ResponseEntity<TokenResponseDTO> login(@RequestBody LoginRequestDTO dto) {
         var tokenDTO = loginService.login(dto);
         return ResponseEntity.ok(tokenDTO);
+    }
+
+    @GetMapping("/teste")
+    public ResponseEntity<Void> testando() {
+        return ResponseEntity.ok().build();
     }
 }

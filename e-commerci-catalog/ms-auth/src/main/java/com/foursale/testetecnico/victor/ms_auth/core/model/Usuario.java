@@ -6,10 +6,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -18,15 +18,15 @@ import java.util.List;
 public class Usuario {
 
     @Id
-    private String id;
-
-    private String enrollment;
+    private UUID id;
 
     private String pass;
 
-    private String name;
+    private String nome;
 
-    private LocalDateTime createdAt;
+    private String email;
+
+    private String cpf;
 
     private List<Perfil> roles;
 
@@ -36,14 +36,14 @@ public class Usuario {
 
     public boolean hasAdminRole() {
         return hasRoles() && roles.stream()
-                .anyMatch(role -> PerfilEnum.hasAdminName(role.getName()));
+                .anyMatch(role -> PerfilEnum.hasAdminName(role.getNome()));
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .append("id", id)
-                .append("name", name)
+                .append("name", nome)
                 .build();
     }
 }

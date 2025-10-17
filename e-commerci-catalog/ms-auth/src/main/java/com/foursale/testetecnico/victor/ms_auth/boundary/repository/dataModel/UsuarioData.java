@@ -9,30 +9,35 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 @Data
-@Table("tb_user")
+@Table("tb_usuario")
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class UsuarioData {
 
     @Id
-    private String id;
+    private UUID id;
 
-    private String matricula;
+    private String nome;
 
-    private String pass;
+    private String password;
 
-    private String name;
+    private String email;
 
-    private LocalDateTime createdAt;
+    private String cpf;
 
-    private List<Perfil> perfis;
+    @MappedCollection(keyColumn = "id", idColumn = "id_usuario")
+    private Set<UsuarioPerfilData> perfils2;
+
+    private List<PerfilData> perfis;
 
     public boolean hasRoles() {
         return perfis != null && !perfis.isEmpty();
@@ -40,23 +45,23 @@ public class UsuarioData {
 
     public boolean hasAdminRole() {
         return hasRoles() && perfis.stream()
-                .anyMatch(role -> PerfilEnum.hasAdminName(role.getName()));
+                .anyMatch(role -> PerfilEnum.hasAdminName(role.getNome()));
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .append("id", id)
-                .append("name", name)
+                .append("name", nome)
                 .build();
     }
 
     public Usuario toModel() {
         Usuario usuario = new Usuario();
         usuario.setId(id);
-        usuario.setName(name);
-        usuario.setPass(pass);
-        usuario.setRoles(perfis);
+        usuario.setNome(nome);
+        usuario.setPass(password);
+        usuario.setRoles(perfis.stream().map(PerfilData::toModel).toList());
         return usuario;
     }
 }

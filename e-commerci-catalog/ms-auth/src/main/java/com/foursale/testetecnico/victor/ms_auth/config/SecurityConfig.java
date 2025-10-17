@@ -29,13 +29,8 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(registry -> {
                     registry.requestMatchers(HttpMethod.GET, "/health").permitAll();
-//                    registry.requestMatchers(HttpMethod.GET, "/hello-kafka/**").permitAll();
-                    registry.requestMatchers(HttpMethod.POST, "/v1/produto/**").permitAll();
-                    registry.requestMatchers(HttpMethod.PUT, "/v1/produto/**").permitAll();
-                    registry.requestMatchers(HttpMethod.DELETE, "/v1/produto/**").permitAll();
 
-                    registry.requestMatchers(HttpMethod.GET, "/auth/v1").permitAll();
-//                registry.requestMatchers(HttpMethod.POST, "/auth/v1").hasRole("admin"); // block after testing
+                    registry.requestMatchers(HttpMethod.GET, "/v1/auth").permitAll();
 
                     registry.anyRequest().authenticated();
                 })
