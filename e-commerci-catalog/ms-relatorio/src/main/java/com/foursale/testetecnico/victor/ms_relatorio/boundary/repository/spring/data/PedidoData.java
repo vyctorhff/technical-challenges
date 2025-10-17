@@ -1,8 +1,6 @@
 package com.foursale.testetecnico.victor.ms_relatorio.boundary.repository.spring.data;
 
-import com.foursale.testetecnico.victor.ms_relatorio.core.model.Pagamento;
 import com.foursale.testetecnico.victor.ms_relatorio.core.model.PedidoRelatorio;
-import com.foursale.testetecnico.victor.ms_relatorio.core.model.Usuario;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
