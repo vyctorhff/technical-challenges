@@ -1,22 +1,39 @@
 # About
 
-# Run
+## Arquitetura
+
+Hexagonal (Portas e adaptadores)
+
+## Documentação
+
+Diagramas de micro serviço
+
+./docs
+
+## Tecnologias
+
+Java 16
+Spring Boot
+Spring Data JDBC
+Spring Security
+Spring Kafka
+Elastic Search 
+
+## Scripts de banco
+
+./db-init
+
+## Executar
 
 sudo docker-compose up -d
 
-## Ferramentas desenvolvimento
+## Credênciais
 
-### Kafka - offset
+admin  -> 123
+user-1 -> 123
 
-https://www.kafkatool.com/
 
-export INSTALL4J_JAVA_HOME=<path>jdk-11.0.2
+### Credênciais Banco
 
-### Elastic Search - Kibana
+.env
 
-docker pull docker.elastic.co/kibana/kibana:9.1.5
-docker run --name kib01 --net elastic -p 5601:5601 docker.elastic.co/kibana/kibana:9.1.5
-
-### MySQL interface
-
-docker run --name phpmyadmin --network e-commerci-catalog_app-net -d -e PMA_ARBITRARY=1 -p 8080:80 phpmyadmin
