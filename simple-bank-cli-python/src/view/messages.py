@@ -24,3 +24,16 @@ NEW_USER_VALUE = "account value: "
 NEW_USER_DUPLICATE = "User already exists!"
 
 #####################################################################
+STAMENT_MAIN = """
+--> Stament
+
+Current value: ${value}
+"""
+
+STAMENT_TRANSACTION_DETAIL = """
+Transactions
+#{date}: #{user} #{valor}
+--------------------------
+"""
+#####################################################################
+#####################################################################
