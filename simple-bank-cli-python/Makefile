@@ -2,4 +2,5 @@ run:
 	@python src/main.py
 
 tests:
-	@echo 'olha ai'
+	@python3 -m unittest discover -s test -v
+
