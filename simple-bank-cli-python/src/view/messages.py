@@ -1,15 +1,17 @@
-MAIN = """
-
+MENU_MAIN_TITLE = """
 =================Simple Bank CLI With Python=================
-
-1) New User
-2) Deposit
-3) Withdrawal(? Saque)
-4) Bank Stament(? Extrato)
-5) Exit
 """
 
-SELECT = "Select: "
+MENU_ITEM = "{}) {}"
+
+# 1) New User
+# 2) Deposit
+# 3) Withdrawal(? Saque)
+# 4) Bank Stament(? Extrato)
+# 5) Exit
+
+MENU_SELECT = """
+Select: """
 
 #####################################################################
 
