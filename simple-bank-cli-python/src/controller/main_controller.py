@@ -1,17 +1,13 @@
-from src.view import messages
-
 class MainController:
 
-    def __init__(self):
-        self.option = 5
-        self.controllers = tuple()
+    def __init__(self, menu_view, controllers):
+        self.option = 0
+        self.controllers = controllers
+        self.menu_view = menu_view
     
-    def add_controller(self, controller):
-        self.controllers.append(controller)
-
-    def print_main(self):
-        print(messages.MAIN)
-        self.option = int(input(messages.SELECT))
+    def process(self):
+        self.menu_view.process(self.controllers)
+        self.option = self.menu_view.get_option()
     
     def is_exit(self) -> bool:
-        return self.option == 5
+        return self.option == -1
