@@ -11,6 +11,6 @@ class StatementService:
     def __init__(self, transaction_repository):
         self.transaction_repository = transaction_repository
     
-    def process(self, user) -> list:
+    def find_transacations_by_user(self, user) -> list:
         transactions = self.transaction_repository.find_by_user_sorce_email(user.email)
         return Statement(user, transactions)

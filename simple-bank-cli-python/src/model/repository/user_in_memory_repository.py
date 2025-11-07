@@ -23,3 +23,5 @@ class UserInMemoryRepository:
             raise ValueError('not find it')
         return result_list[0] 
 
+    def find_all(self):
+        return self.users
