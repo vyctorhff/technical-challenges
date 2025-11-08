@@ -28,14 +28,21 @@ NEW_USER_DUPLICATE = "User already exists!"
 #####################################################################
 STAMENT_MAIN = """
 --> Stament
-
-Current value: ${value}
 """
+
+STAMENT_VALUE = "Current value: "
 
 STAMENT_TRANSACTION_DETAIL = """
 Transactions
-#{date}: #{user} #{valor}
+data\tuser\tvalue
+{date}t\{user}t\{valor}
 --------------------------
 """
+
+STAMENT_NO_TRANSACTIONS = "No transactions found it"
 #####################################################################
+SELECT_USER = "Select a user:"
+SELECT_USER_ITEM = "\t{}) {}"
+
+SELECT_USER_HAS_NO_USER = "No user to show"
 #####################################################################

@@ -1,3 +1,4 @@
+from src.view.messages import STAMENT_MAIN, STAMENT_TRANSACTION_DETAIL, STAMENT_NO_TRANSACTIONS
 
 class StatmentView:
 
@@ -5,13 +6,13 @@ class StatmentView:
         pass
 
     def print_main(self):
-        pass
-
-    def print_user(self, users):
-        pass
-
-    def print_select_user(self):
-        pass
+        print(STAMENT_MAIN)
 
     def print_transaction(self, transactions):
-        pass
+        for transaction in transactions:
+            date = transaction.dt
+            value = transaction.value
+            user = transaction.user_target.name
+            print(STAMENT_TRANSACTION_DETAIL.format(date, user, value))
+        else:
+            print(STAMENT_NO_TRANSACTIONS)
