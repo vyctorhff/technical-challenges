@@ -9,10 +9,12 @@ class StatmentView:
         print(STAMENT_MAIN)
 
     def print_transaction(self, transactions):
+        if len(transactions) == 0:
+            print(STAMENT_NO_TRANSACTIONS)
+            return
+
         for transaction in transactions:
             date = transaction.dt
             value = transaction.value
             user = transaction.user_target.name
-            print(STAMENT_TRANSACTION_DETAIL.format(date, user, value))
-        else:
-            print(STAMENT_NO_TRANSACTIONS)
+            print(STAMENT_TRANSACTION_DETAIL.format(user, value, date))
