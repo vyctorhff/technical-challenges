@@ -23,8 +23,8 @@ class StatementController:
         opt = self.select_user_controlller.get_opt()
         user = users[opt]
 
-        transactions = self.service.find_transacations_by_user(user)
-        self.view.print_transaction(transactions)
+        stament = self.service.find_transacations_by_user(user)
+        self.view.print_transaction(stament.list_transcation)
     
     def get_description(self):
         return 'Stament(Extrato)'
