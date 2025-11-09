@@ -4,12 +4,6 @@ MENU_MAIN_TITLE = """
 
 MENU_ITEM = "{}) {}"
 
-# 1) New User
-# 2) Deposit
-# 3) Withdrawal(? Saque)
-# 4) Bank Stament(? Extrato)
-# 5) Exit
-
 MENU_SELECT = """
 Select: """
 
@@ -34,15 +28,15 @@ STAMENT_VALUE = "Current value: "
 
 STAMENT_TRANSACTION_DETAIL = """
 Transactions
-data\tuser\tvalue
-{date}t\{user}t\{valor}
+user\tvalue\tdate
+{}\t{}\t{}
 --------------------------
 """
 
 STAMENT_NO_TRANSACTIONS = "No transactions found it"
 #####################################################################
 SELECT_USER = "Select a user:"
-SELECT_USER_ITEM = "\t{}) {}"
+SELECT_USER_ITEM = "{}) {}"
 
 SELECT_USER_HAS_NO_USER = "No user to show"
 #####################################################################
