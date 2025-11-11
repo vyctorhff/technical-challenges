@@ -28,15 +28,19 @@ STAMENT_VALUE = "Current value: "
 
 STAMENT_TRANSACTION_DETAIL = """
 Transactions
-user\tvalue\tdate
-{}\t{}\t{}
+opt\tuser\tvalue\tdate
+{}\t{}\t{}\t{}
 --------------------------
 """
 
 STAMENT_NO_TRANSACTIONS = "No transactions found it"
 #####################################################################
-SELECT_USER = "Select a user:"
+SELECT_USER = "Select a user: "
 SELECT_USER_ITEM = "{}) {}"
 
 SELECT_USER_HAS_NO_USER = "No user to show"
+#####################################################################
+TRANSFERENCE_MAIN = """
+--> Transaference
+"""
 #####################################################################

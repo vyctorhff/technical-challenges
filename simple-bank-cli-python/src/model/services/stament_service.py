@@ -12,9 +12,5 @@ class StatementService:
         self.transaction_repository = transaction_repository
     
     def find_transacations_by_user(self, user) -> Statement:
-        transactions = self.transaction_repository.find_by_user_sorce_email(user.email)
-        # result = []
-        # for transaction in transactions:
-        #     result.append(Statement(user, transaction))
-        # return result
+        transactions = self.transaction_repository.find_by_user_email(user.email)
         return Statement(user, transactions)

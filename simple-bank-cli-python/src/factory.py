@@ -1,10 +1,14 @@
 
+from src.model.domain.user import User
+
+from src.share.console import Console
+
 from src.controller.main_controller import MainController
 from src.controller.user_controller import UserController
 from src.controller.exit_controller import ExitController
-from src.controller.withdraw_controller import WithdrawMoneyController
+from src.controller.transference_controller import TransferenceController, WithdrawMoneyView
 from src.controller.statment_controller import StatementController
-from src.controller.select_user_controller import SelectUserController
+from src.controller.select_user_controller import SelectUserController, SelectUserView
 
 from src.view.menu_view import MenuView
 from src.view.stament_view import StatmentView
@@ -13,36 +17,45 @@ from src.view.new_user_view import NewUserView
 from src.model.repository.transaction_in_memory_repository import TransactionInMemoryRepository
 from src.model.repository.user_in_memory_repository import UserInMemoryRepository
 
-from src.controller.withdraw_controller import TransactionService, WithdrawMoneyController, WithdrawMoneyView
 from src.model.services.stament_service import StatementService
 from src.model.services.new_user_service import NewUserService
 from src.model.services.find_user_service import FindUserService
+from src.model.services.transaction_service import TransactionService
 
-# #######################################################################
-# Factory
+class FactoryRepository:
 
-# user_repo = UserInMemoryRepository()
-# transaction_repo = TransactionInMemoryRepository()
+    def __init__(self, samples=True):
+        self.user_repo = UserInMemoryRepository()
+        self.transaction_repo = TransactionInMemoryRepository()
 
-# new_user_service = NewUserService(user_repo)
-# find_user_service = FindUserService(user_repo)
-# statment_service = StatementService(transaction_repo)
-# transaction_service = TransactionService(transaction_repo)
+        if samples:
+            self.add_user_sample()
 
-# select_user_controller = SelectUserController(find_user_service)
-# statment_controller = StatementController(find_user_service, statment_service, StatmentView(), select_user_controller)
-# withdraw_controller = WithdrawMoneyController(transaction_service, select_user_controller, find_user_service, WithdrawMoneyView())
+    def get_user_repo(self):
+        return self.user_repo
+    
+    def get_transaction_repo(self):
+        return self.transaction_repo
+    
+    def add_user_sample(self):
+        self.user_repo.add(User('Rob', 'rob@email.com', 200.0))
+        self.user_repo.add(User('Eli', 'eli@email.com', 100.0))
+        self.user_repo.add(User('Nat', 'nat@email.com', 400.0))
+        self.user_repo.add(User('Alb', 'alb@email.com', 600.0))
+        self.user_repo.add(User('Kat', 'kat@email.com', 700.0))
+        self.user_repo.add(User('Dan', 'dan@email.com', 300.0))
 
 class FactoryService:
 
     def __init__(self):
-        self.user_repo = UserInMemoryRepository()
-        self.transaction_repo = TransactionInMemoryRepository()
+        factory_repo = FactoryRepository()
+        user_repo = factory_repo.get_user_repo()
+        transaction_repo = factory_repo.get_transaction_repo()
 
-        self.new_user = NewUserService(self.user_repo)
-        self.select_user = FindUserService(self.user_repo)
-        self.statment = StatementService(self.transaction_repo)
-        self.transaction = TransactionService(self.transaction_repo)
+        self.new_user = NewUserService(user_repo)
+        self.select_user = FindUserService(user_repo)
+        self.statment = StatementService(transaction_repo)
+        self.transaction = TransactionService(transaction_repo)
 
     def get_new_user_service(self) -> NewUserService:
         return self.new_user
@@ -60,6 +73,7 @@ class FactoryController:
 
     def __init__(self):
         self.factory_service = FactoryService()
+        self.console = Console()
     
     def create_main(self):
         controllers = [
@@ -72,7 +86,8 @@ class FactoryController:
 
     def create_select_user(self):
         return SelectUserController(
-            self.factory_service.get_new_user_service()
+            self.factory_service.get_select_user_service(),
+            SelectUserView()
         )
 
     def create_statement(self):
@@ -84,10 +99,9 @@ class FactoryController:
         )
 
     def create_withdraw(self):
-        return WithdrawMoneyController(
+        return TransferenceController(
             self.factory_service.get_transaction_service(),
             self.create_select_user(),
-            self.factory_service.get_select_user_service(),
             WithdrawMoneyView()
         )
     
