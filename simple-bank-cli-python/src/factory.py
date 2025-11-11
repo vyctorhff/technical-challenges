@@ -1,5 +1,5 @@
-
 from src.model.domain.user import User
+from src.model.domain.account import Account
 
 from src.share.console import Console
 
@@ -38,12 +38,14 @@ class FactoryRepository:
         return self.transaction_repo
     
     def add_user_sample(self):
-        self.user_repo.add(User('Rob', 'rob@email.com', 200.0))
-        self.user_repo.add(User('Eli', 'eli@email.com', 100.0))
-        self.user_repo.add(User('Nat', 'nat@email.com', 400.0))
-        self.user_repo.add(User('Alb', 'alb@email.com', 600.0))
-        self.user_repo.add(User('Kat', 'kat@email.com', 700.0))
-        self.user_repo.add(User('Dan', 'dan@email.com', 300.0))
+        account = Account(1)
+        
+        self.user_repo.add(User('Rob', 'rob@email.com', 200.0, account))
+        self.user_repo.add(User('Eli', 'eli@email.com', 100.0, account))
+        self.user_repo.add(User('Nat', 'nat@email.com', 400.0, account))
+        self.user_repo.add(User('Alb', 'alb@email.com', 600.0, account))
+        self.user_repo.add(User('Kat', 'kat@email.com', 700.0, account))
+        self.user_repo.add(User('Dan', 'dan@email.com', 300.0, account))
 
 class FactoryService:
 
