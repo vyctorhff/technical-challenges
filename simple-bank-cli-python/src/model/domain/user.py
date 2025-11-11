@@ -2,10 +2,18 @@ from src.model.domain.wallet import Wallet
 
 class User:
     
-    def __init__(self, name, email, current_value):
+    def __init__(self, name, email, current_value, account=None):
         self.name = name
         self.email = email
         self.wallet = Wallet(current_value)
+        self.accounts = []
+
+        if account != None:
+            self.add_account(account)
+    
+    def add_account(self, account):
+        account.validate()
+        self.accounts.append(account)
 
     def validate(self) -> bool:
 
