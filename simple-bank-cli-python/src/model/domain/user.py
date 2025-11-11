@@ -20,3 +20,5 @@ class User:
 
         return True
 
+    def is_equal(self, user):
+        return self.email == user.email
