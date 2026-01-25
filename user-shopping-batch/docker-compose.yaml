@@ -1,0 +1,56 @@
+version: "3"
+
+services:
+
+  ms-user-shopping-mysql:
+    image: mysql:8.0.43-debian
+    container_name: ms-user-shopping-mysql
+    ports:
+      - "${MYSQL_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: data_root_pass_123
+      MYSQL_DATABASE: ${MYSQL_NAME}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      TZ: 'UTC'
+    volumes:
+      - ms-user-shopping-target-storage:/var/lib/mysql
+    networks:
+      - challenges-net
+
+  ms-user-shopping-ftp:
+    image: stilliard/pure-ftpd
+    container_name: ms-user-shopping-ftp
+    ports:
+      - "${FTP_PORT}:21"
+      - "30000-30009:30000-30009"
+    environment:
+      PUBLICHOST: ${FTP_HOST}
+      FTP_USER_NAME: ${FTP_USER}
+      FTP_USER_PASS: ${FTP_PASS}
+      FTP_USER_HOME: /home/user
+    volumes:
+        - ftp-storage:/home/user
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      PMA_ARBITRARY: 1
+    ports:
+      - "8080:80"
+    networks:
+      - challenges-net
+    depends_on:
+      - ms-user-shopping-mysql
+
+volumes:
+  ms-user-shopping-target-storage:
+    driver: local
+  ftp-storage:
+    driver: local
+
+networks:
+  challenges-net:
+    name: challenges-net
+    driver: bridge
