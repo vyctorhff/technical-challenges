@@ -1,7 +1,7 @@
-package br.com.challenge.user_shopping_batch.config;
+package br.com.challenge.user_shopping_batch.infra.batch;
 
-import br.com.challenge.user_shopping_batch.infra.batch.CsvRowProcessor;
-import br.com.challenge.user_shopping_batch.infra.batch.dto.CsvShoppingRowDTO;
+import br.com.challenge.user_shopping_batch.infra.batch.dto.CsvShoppingRowInput;
+import br.com.challenge.user_shopping_batch.infra.batch.dto.CsvShoppingRowOutput;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;
@@ -22,24 +22,26 @@ import javax.sql.DataSource;
 public class BatchConfig {
 
     @Bean
-    public FlatFileItemReader<String> readerFromCsv() {
-        return new FlatFileItemReaderBuilder<String>()
+    public FlatFileItemReader<CsvShoppingRowInput> readerFromCsv() {
+        return new FlatFileItemReaderBuilder<CsvShoppingRowInput>()
                 .name("csvUserShoppingReader")
                 .resource(new ClassPathResource("data/csv/file.csv"))
+                .linesToSkip(1)
                 .delimited()
-                .names("name", "shopping detail", "amount", "date")
-                .lineMapper((line, number) -> line)
-//                .targetType(CsvShoppingRowDTO.class)
+                .delimiter(";")
+                .names("name", "shoppingDetail", "amount", "date")
+//                .lineMapper((line, number) -> line)
+                .targetType(CsvShoppingRowInput.class)
                 .build();
     }
 
     @Bean
-    public JdbcBatchItemWriter<CsvShoppingRowDTO> dataBaseWriter(DataSource dataSource) {
-        return new JdbcBatchItemWriterBuilder<CsvShoppingRowDTO>()
+    public JdbcBatchItemWriter<CsvShoppingRowOutput> dataBaseWriter(DataSource dataSource) {
+        return new JdbcBatchItemWriterBuilder<CsvShoppingRowOutput>()
                 .sql("""
                      INSERT INTO TB_SHOPPING_LOG
                         (ID_FILE, DS_PRODUCT, VL_AMOUNT, DT_ORDER) VALUES
-                        (:name, :detail, :amount, :date)
+                        (:name, :shoppingDetail, :amount, :date)
                      """)
                 .dataSource(dataSource)
                 .beanMapped()
@@ -52,7 +54,7 @@ public class BatchConfig {
                            CsvRowProcessor csvRowProcessor,
                            DataSource dataSource) {
         return new StepBuilder("stepImportFromCsvToDataBase", jobRepository)
-                .<String, CsvShoppingRowDTO>chunk(10, transactionManager)
+                .<CsvShoppingRowInput, CsvShoppingRowOutput>chunk(10, transactionManager)
                 .reader(readerFromCsv())
                 .processor(csvRowProcessor)
                 .writer(dataBaseWriter(dataSource))
