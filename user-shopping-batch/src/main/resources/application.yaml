@@ -18,7 +18,7 @@ spring:
     job:
       enabled: false # not execute on starting application
     jdbc:
-      initialize-schema: "never"
+      initialize-schema: "always"
 
 fpt:
   host: ${FTP_HOST}
