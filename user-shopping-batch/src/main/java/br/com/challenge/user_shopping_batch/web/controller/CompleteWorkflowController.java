@@ -11,18 +11,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/import/csv/dry")
+@RequestMapping("/complete")
 @RequiredArgsConstructor
 @Slf4j
-public class ConsoleImportController {
+public class CompleteWorkflowController {
 
-    private final Job consoleCsvJob;
+    private final Job completWorkflow;
     private final JobLauncher jobLauncher;
 
     @PostMapping
-    public ResponseEntity<Void> dry() {
+    public ResponseEntity<Void> execute() {
         try {
-            jobLauncher.run(consoleCsvJob, new JobParametersBuilder().toJobParameters());
+            jobLauncher.run(completWorkflow, new JobParametersBuilder().toJobParameters());
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             log.error("error during console batch ", e);
