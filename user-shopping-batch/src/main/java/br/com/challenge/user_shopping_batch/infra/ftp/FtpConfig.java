@@ -1,4 +1,4 @@
-package br.com.challenge.user_shopping_batch.config;
+package br.com.challenge.user_shopping_batch.infra.ftp;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
