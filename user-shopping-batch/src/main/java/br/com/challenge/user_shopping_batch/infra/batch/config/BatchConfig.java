@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 public class BatchConfig {
 
     @Bean
-    public Job completWorkflow(JobRepository jobRepository,
+    public Job completeWorkflow(JobRepository jobRepository,
                                 Step downloadFtpFileStep) {
         return new JobBuilder("completWorkflow", jobRepository)
                 .start(downloadFtpFileStep)
