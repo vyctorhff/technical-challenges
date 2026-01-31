@@ -1,6 +1,6 @@
 package br.com.challenge.user_shopping_batch.infra.batch.config;
 
-import br.com.challenge.user_shopping_batch.infra.batch.CsvRowProcessor;
+import br.com.challenge.user_shopping_batch.infra.batch.processor.CsvRowProcessor;
 import br.com.challenge.user_shopping_batch.infra.batch.dto.CsvShoppingRowInput;
 import br.com.challenge.user_shopping_batch.infra.batch.dto.CsvShoppingRowOutput;
 import org.springframework.batch.core.Job;

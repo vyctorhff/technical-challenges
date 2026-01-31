@@ -1,4 +1,4 @@
-package br.com.challenge.user_shopping_batch.infra.batch;
+package br.com.challenge.user_shopping_batch.infra.batch.processor;
 
 import br.com.challenge.user_shopping_batch.infra.batch.dto.CsvShoppingRowInput;
 import br.com.challenge.user_shopping_batch.infra.batch.dto.CsvShoppingRowOutput;
