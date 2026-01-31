@@ -1,6 +1,7 @@
 package br.com.challenge.user_shopping_batch.infra.batch.tasklet;
 
 import br.com.challenge.user_shopping_batch.infra.batch.dto.CompleteWorkflowContext;
+import br.com.challenge.user_shopping_batch.infra.batch.enums.NameParameterContext;
 import br.com.challenge.user_shopping_batch.infra.ftp.service.FtpService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,8 +23,8 @@ public class DownloadFileTasklet implements Tasklet {
         log.info("Starting download file from ftp ");
 
         CompleteWorkflowContext context = getContext(chunkContext);
-        String filePath = ftpService.downloadInTemp(context.getClientFileFtpPath(), context.getClientFileName());
 
+        String filePath = ftpService.downloadInTemp(context.getClientFileFtpPath(), context.getClientFileName());
         context.setFileDownloadedPath(filePath);
 
         log.info("Finished download file from ftp with success ");
@@ -33,6 +34,6 @@ public class DownloadFileTasklet implements Tasklet {
     private CompleteWorkflowContext getContext(ChunkContext chunkContext) {
         return (CompleteWorkflowContext) chunkContext.getStepContext()
                 .getStepExecutionContext()
-                .get("completeWorkflowContext");
+                .get(NameParameterContext.COMPLETE_WORKFLOW.getName());
     }
 }
