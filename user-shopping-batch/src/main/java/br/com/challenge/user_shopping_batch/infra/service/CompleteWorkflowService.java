@@ -1,7 +1,6 @@
 package br.com.challenge.user_shopping_batch.infra.service;
 
-import br.com.challenge.user_shopping_batch.infra.batch.dto.CompleteWorkflowContext;
-import br.com.challenge.user_shopping_batch.infra.batch.enums.NameParameterContext;
+import br.com.challenge.user_shopping_batch.infra.batch.enums.JobParamNames;
 import br.com.challenge.user_shopping_batch.infra.db.entity.UserEntity;
 import br.com.challenge.user_shopping_batch.infra.db.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CompleteWorkflowService {
 
-    private final Job completeWorkflow;
+    private final Job jobCompleteWorkflow;
     private final JobLauncher jobLauncher;
 
     private final UserRepository userRepository;
@@ -36,17 +35,15 @@ public class CompleteWorkflowService {
         }
 
         for (UserEntity entity : userList) {
-            CompleteWorkflowContext context = new CompleteWorkflowContext(entity);
-
-            String paramRunId = NameParameterContext.RUN_ID.getName();
-            String paramContext = NameParameterContext.COMPLETE_WORKFLOW.getName();
-
             JobParameters jobParameters = new JobParametersBuilder()
-                    .addLong(paramRunId, System.currentTimeMillis())
-                    .addJobParameter(paramContext, context, CompleteWorkflowContext.class)
+                    .addLong(JobParamNames.RUN_ID.getName(), System.currentTimeMillis())
+                    .addLong(JobParamNames.CLIENT_ID.getName(), entity.id())
+                    .addString(JobParamNames.CLIENT_NAME.getName(), entity.name())
+                    .addString(JobParamNames.CLIENT_PATH.getName(), entity.config().pathFtp())
+                    .addString(JobParamNames.CLIENT_FILE_NAME.getName(), entity.config().fileName())
                     .toJobParameters();
 
-            jobLauncher.run(completeWorkflow, jobParameters);
+            jobLauncher.run(jobCompleteWorkflow, jobParameters);
         }
     }
 }

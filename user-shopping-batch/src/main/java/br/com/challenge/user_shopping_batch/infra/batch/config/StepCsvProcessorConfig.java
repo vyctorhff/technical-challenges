@@ -1,20 +1,21 @@
 package br.com.challenge.user_shopping_batch.infra.batch.config;
 
-import br.com.challenge.user_shopping_batch.infra.batch.processor.CsvRowProcessor;
 import br.com.challenge.user_shopping_batch.infra.batch.dto.CsvShoppingRowInput;
 import br.com.challenge.user_shopping_batch.infra.batch.dto.CsvShoppingRowOutput;
-import org.springframework.batch.core.Job;
+import br.com.challenge.user_shopping_batch.infra.batch.processor.CsvRowProcessor;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.job.builder.JobBuilder;
+import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
+import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilder;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
@@ -23,10 +24,15 @@ import javax.sql.DataSource;
 public class StepCsvProcessorConfig {
 
     @Bean
-    public FlatFileItemReader<CsvShoppingRowInput> readerFromCsv() {
+    @StepScope
+    public FlatFileItemReader<CsvShoppingRowInput> readerFromCsv(
+            @Value("#{jobParameters['completeWorkflowContext']}") CompleteWorkflowContext context
+    ) {
+        String filePath = context.getFileDownloadPath();
         return new FlatFileItemReaderBuilder<CsvShoppingRowInput>()
                 .name("csvUserShoppingReader")
-                .resource(new ClassPathResource("data/csv/file.csv"))
+//                .resource(new ClassPathResource("data/csv/file.csv"))
+                .resource(new FileSystemResource(filePath))
                 .linesToSkip(1)
                 .delimited()
                 .delimiter(";")
@@ -51,21 +57,15 @@ public class StepCsvProcessorConfig {
     @Bean
     public Step stepImportFromCsvToDataBase(JobRepository jobRepository,
                                             PlatformTransactionManager transactionManager,
+                                            ItemReader<CsvShoppingRowInput> readerFromCsv,
                                             CsvRowProcessor csvRowProcessor,
                                             DataSource dataSource) {
+
         return new StepBuilder("stepImportFromCsvToDataBase", jobRepository)
                 .<CsvShoppingRowInput, CsvShoppingRowOutput>chunk(10, transactionManager)
-                .reader(readerFromCsv())
+                .reader(readerFromCsv)
                 .processor(csvRowProcessor)
                 .writer(dataBaseWriter(dataSource))
-                .build();
-    }
-
-    @Bean
-    public Job importFromCsvJob(JobRepository jobRepository,
-                                Step stepImportFromCsvToDataBase) {
-        return new JobBuilder("importFromCsvJob", jobRepository)
-                .start(stepImportFromCsvToDataBase)
                 .build();
     }
 }

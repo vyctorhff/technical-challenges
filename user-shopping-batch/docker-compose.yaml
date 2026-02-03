@@ -32,17 +32,17 @@ services:
     volumes:
         - ftp-storage:/home/user
 
-#  phpmyadmin:
-#    image: phpmyadmin
-#    container_name: phpmyadmin
-#    environment:
-#      PMA_ARBITRARY: 1
-#    ports:
-#      - "8080:80"
-#    networks:
-#      - challenges-net
-#    depends_on:
-#      - ms-user-shopping-mysql
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      PMA_ARBITRARY: 1
+    ports:
+      - "8080:80"
+    networks:
+      - challenges-net
+    depends_on:
+      - ms-user-shopping-mysql
 
 volumes:
   ms-user-shopping-target-storage:
