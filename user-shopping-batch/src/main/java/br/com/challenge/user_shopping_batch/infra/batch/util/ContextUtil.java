@@ -15,7 +15,7 @@ public class ContextUtil {
 
     public static String getJobParamInContext(ChunkContext chunkContext, JobParamNames paramNames) {
         return chunkContext.getStepContext()
-                .getStepExecutionContext()
+                .getJobExecutionContext()
                 .get(paramNames.getName())
                 .toString();
     }

@@ -2,6 +2,7 @@ package br.com.challenge.user_shopping_batch.infra.batch.config;
 
 import br.com.challenge.user_shopping_batch.infra.batch.dto.CsvShoppingRowInput;
 import br.com.challenge.user_shopping_batch.infra.batch.dto.CsvShoppingRowOutput;
+import br.com.challenge.user_shopping_batch.infra.batch.enums.JobParamNames;
 import br.com.challenge.user_shopping_batch.infra.batch.processor.CsvRowProcessor;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.StepScope;
@@ -26,9 +27,8 @@ public class StepCsvProcessorConfig {
     @Bean
     @StepScope
     public FlatFileItemReader<CsvShoppingRowInput> readerFromCsv(
-            @Value("#{jobParameters['completeWorkflowContext']}") CompleteWorkflowContext context
+            @Value("#{jobParameters['client.file.download.path']}") String filePath
     ) {
-        String filePath = context.getFileDownloadPath();
         return new FlatFileItemReaderBuilder<CsvShoppingRowInput>()
                 .name("csvUserShoppingReader")
 //                .resource(new ClassPathResource("data/csv/file.csv"))

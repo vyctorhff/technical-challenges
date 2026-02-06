@@ -25,7 +25,7 @@ public class BatchConfig {
      */
 
     @Bean
-    public Job completeWorkflow(JobRepository jobRepository,
+    public Job jobCompleteWorkflow(JobRepository jobRepository,
                                 Step downloadFtpFileStep) {
         return new JobBuilder("completWorkflow", jobRepository)
                 .start(downloadFtpFileStep)
