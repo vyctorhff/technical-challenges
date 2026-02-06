@@ -47,7 +47,7 @@ public class StepCsvProcessorConfig {
                 .sql("""
                      INSERT INTO TB_SHOPPING_LOG
                         (ID_FILE, DS_PRODUCT, VL_AMOUNT, DT_ORDER) VALUES
-                        (:name, :shoppingDetail, :amount, :date)
+                        (:idFile, :name, :shoppingDetail, :amount, :date)
                      """)
                 .dataSource(dataSource)
                 .beanMapped()

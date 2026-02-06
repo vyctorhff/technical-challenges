@@ -9,13 +9,21 @@ public class ContextUtil {
                                              JobParamNames jobParamNames,
                                              String value) {
         context.getStepContext()
-                .getJobExecutionContext()
+                .getStepExecution()
+                .getExecutionContext()
                 .put(jobParamNames.getName(), value);
     }
 
     public static String getJobParamInContext(ChunkContext chunkContext, JobParamNames paramNames) {
         return chunkContext.getStepContext()
                 .getJobExecutionContext()
+                .get(paramNames.getName())
+                .toString();
+    }
+
+    public static String getJobParam(ChunkContext chunkContext, JobParamNames paramNames) {
+        return chunkContext.getStepContext()
+                .getJobParameters()
                 .get(paramNames.getName())
                 .toString();
     }
