@@ -37,7 +37,9 @@ public class FtpService {
 
     public String downloadInTemp(String path, String fileName) throws IOException {
         File tempFile = File.createTempFile(fileName, ".temp");
-        ftpTemplate.get(path, stream -> {
+        String completePath = path + fileName;
+
+        ftpTemplate.get(completePath, stream -> {
             try (FileOutputStream fout = new FileOutputStream(tempFile)) {
                 stream.transferTo(fout);
             }

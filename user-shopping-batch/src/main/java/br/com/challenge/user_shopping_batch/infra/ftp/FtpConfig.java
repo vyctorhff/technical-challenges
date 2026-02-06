@@ -1,5 +1,6 @@
 package br.com.challenge.user_shopping_batch.infra.ftp;
 
+import org.apache.commons.net.ftp.FTPClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,7 +30,7 @@ public class FtpConfig {
         sessionFactory.setUsername(user);
         sessionFactory.setPassword(pass);
         // For active mode, you might need advanced config if the server requires it
-        // sessionFactory.setClientMode(FTPClient.ACTIVE_LOCAL_DATA_CONNECTION_MODE);
+        sessionFactory.setClientMode(FTPClient.PASSIVE_LOCAL_DATA_CONNECTION_MODE);
         return sessionFactory;
     }
 
