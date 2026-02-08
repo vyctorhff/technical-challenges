@@ -16,4 +16,13 @@ public record FileEntity (
         Integer totalLines,
         @Column("DT_CREATE")
         LocalDateTime createAt
-) {}
+) {
+    public static FileEntity create(Long idUser) {
+        return new FileEntity(
+                null,
+                idUser,
+                0,
+                LocalDateTime.now()
+        );
+    }
+}

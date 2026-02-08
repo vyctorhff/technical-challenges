@@ -5,6 +5,7 @@ import br.com.challenge.user_shopping_batch.infra.batch.dto.CsvShoppingRowOutput
 import br.com.challenge.user_shopping_batch.infra.batch.enums.JobParamNames;
 import br.com.challenge.user_shopping_batch.infra.batch.processor.CsvRowProcessor;
 import org.springframework.batch.core.Step;
+import org.springframework.batch.core.configuration.annotation.JobScope;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
@@ -26,8 +27,10 @@ public class StepCsvProcessorConfig {
 
     @Bean
     @StepScope
+    @JobScope
     public FlatFileItemReader<CsvShoppingRowInput> readerFromCsv(
-            @Value("#{jobParameters['client.file.download.path']}") String filePath
+//            @Value("#{jobExecutionContext['client.file.download.path']}") String filePath
+            @Value("#{stepExecutionContext['client.file.download.path']}") String filePath
     ) {
         return new FlatFileItemReaderBuilder<CsvShoppingRowInput>()
                 .name("csvUserShoppingReader")
@@ -46,7 +49,8 @@ public class StepCsvProcessorConfig {
         return new JdbcBatchItemWriterBuilder<CsvShoppingRowOutput>()
                 .sql("""
                      INSERT INTO TB_SHOPPING_LOG
-                        (ID_FILE, DS_PRODUCT, VL_AMOUNT, DT_ORDER) VALUES
+                        (ID_FILE, DS_PRODUCT, VL_AMOUNT, DT_ORDER)
+                     VALUES
                         (:idFile, :name, :shoppingDetail, :amount, :date)
                      """)
                 .dataSource(dataSource)

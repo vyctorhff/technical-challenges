@@ -24,11 +24,17 @@ public class BatchConfig {
      * 9 - step - tasklet - call integration
      */
 
+    // TODO: criar passo 3
+
     @Bean
     public Job jobCompleteWorkflow(JobRepository jobRepository,
-                                Step downloadFtpFileStep) {
+                                   Step downloadFtpFileStep,
+                                   Step insertFileStep,
+                                   Step stepImportFromCsvToDataBase) {
         return new JobBuilder("completWorkflow", jobRepository)
                 .start(downloadFtpFileStep)
+                .next(insertFileStep)
+                .next(stepImportFromCsvToDataBase)
                 .build();
     }
 }
