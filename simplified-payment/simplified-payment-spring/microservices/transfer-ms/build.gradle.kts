@@ -10,7 +10,7 @@ description = "Technical challenge - project that allows bank transfers between 
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(24)
+		languageVersion = JavaLanguageVersion.of(25)
 	}
 }
 
