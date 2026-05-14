@@ -1,9 +1,5 @@
-
-
-uu:
+up:
 	sudo docker-compose up -d
 
-dd:
+down:
 	sudo docker-compose down
-
-
