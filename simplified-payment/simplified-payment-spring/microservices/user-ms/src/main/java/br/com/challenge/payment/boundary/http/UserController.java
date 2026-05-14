@@ -1,7 +1,7 @@
 package br.com.challenge.payment.boundary.http;
 
 import br.com.challenge.payment.boundary.http.dto.UserResponseDTO;
-import br.com.challenge.payment.core.model.User;
+import br.com.challenge.payment.boundary.repository.entity.User;
 import br.com.challenge.payment.core.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

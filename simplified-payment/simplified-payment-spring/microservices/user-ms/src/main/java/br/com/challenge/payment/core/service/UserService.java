@@ -2,7 +2,7 @@ package br.com.challenge.payment.core.service;
 
 import br.com.challenge.payment.boundary.repository.UserRepository;
 import br.com.challenge.payment.core.exception.FindUserException;
-import br.com.challenge.payment.core.model.User;
+import br.com.challenge.payment.boundary.repository.entity.User;
 import br.com.challenge.payment.core.validation.FindUserValidation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

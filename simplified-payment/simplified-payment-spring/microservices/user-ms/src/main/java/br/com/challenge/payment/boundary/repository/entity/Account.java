@@ -1,4 +1,4 @@
-package br.com.challenge.payment.core.model;
+package br.com.challenge.payment.boundary.repository.entity;
 
 import lombok.Data;
 import org.springframework.data.relational.core.mapping.Table;

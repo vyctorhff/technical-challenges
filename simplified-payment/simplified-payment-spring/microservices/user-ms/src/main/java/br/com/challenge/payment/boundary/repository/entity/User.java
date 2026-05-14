@@ -1,5 +1,6 @@
-package br.com.challenge.payment.core.model;
+package br.com.challenge.payment.boundary.repository.entity;
 
+import br.com.challenge.payment.core.model.Wallet;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.annotation.Id;

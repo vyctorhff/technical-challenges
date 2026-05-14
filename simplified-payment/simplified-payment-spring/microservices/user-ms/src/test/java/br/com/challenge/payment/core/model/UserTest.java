@@ -1,5 +1,6 @@
 package br.com.challenge.payment.core.model;
 
+import br.com.challenge.payment.boundary.repository.entity.User;
 import br.com.challenge.payment.helpers.model.UserHelper;
 import org.junit.jupiter.api.Test;
 

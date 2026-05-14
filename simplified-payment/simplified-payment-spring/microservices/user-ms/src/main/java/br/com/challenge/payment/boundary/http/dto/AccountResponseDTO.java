@@ -1,6 +1,6 @@
 package br.com.challenge.payment.boundary.http.dto;
 
-import br.com.challenge.payment.core.model.Account;
+import br.com.challenge.payment.boundary.repository.entity.Account;
 
 public record AccountResponseDTO(String email) {
     public static AccountResponseDTO fromAccount(Account account) {

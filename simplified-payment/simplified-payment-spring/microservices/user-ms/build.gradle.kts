@@ -10,7 +10,7 @@ description = "Technical challenge - project that allows bank transfers between 
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(24)
+		languageVersion = JavaLanguageVersion.of(25)
 	}
 }
 
@@ -29,13 +29,16 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.kafka:spring-kafka")
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
+//    implementation("org.springframework.boot:spring-boot-h2console")
 
     implementation("org.apache.commons:commons-lang3:3.19.0")
 
 	compileOnly("org.projectlombok:lombok")
 
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
-	runtimeOnly("com.mysql:mysql-connector-j")
+
+	runtimeOnly("com.h2database:h2")
+
 	annotationProcessor("org.projectlombok:lombok")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")

@@ -1,7 +1,7 @@
 package br.com.challenge.payment.helpers.model;
 
-import br.com.challenge.payment.core.model.Account;
-import br.com.challenge.payment.core.model.User;
+import br.com.challenge.payment.boundary.repository.entity.Account;
+import br.com.challenge.payment.boundary.repository.entity.User;
 import br.com.challenge.payment.core.model.Wallet;
 
 public class UserHelper {
