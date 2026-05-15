@@ -1,41 +1,33 @@
 package br.com.challenge.payment.boundary.repository.entity;
 
-import br.com.challenge.payment.core.model.Wallet;
 import lombok.Data;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table("tb_user")
+@Table("TB_USER")
 @Data
 public class User {
 
     @Id
     private Integer id;
 
-    private String nameFirst;
-    private String nameLast;
+    @Column("ID_EXTERNAL")
+    private String idExternal;
 
+    @Column("DS_NAME")
+    private String name;
+
+    @Column("CD_CFP")
     private String cpf;
 
+    @Column("CD_CNPJ")
     private String cnpj;
 
-    @MappedCollection(idColumn = "id_user")
+    @Column("NM_PROFILE")
+    private UserProfile profile;
+
+    @MappedCollection(idColumn = "ID_USER")
     private Account account;
-
-    @MappedCollection(idColumn = "id_user")
-    private Wallet wallet;
-
-    public boolean isUserLojist() {
-        return StringUtils.isNoneBlank(cnpj);
-    }
-
-    public boolean isUserCommon() {
-        return StringUtils.isNoneBlank(cpf);
-    }
-
-    public String getCompleteName() {
-        return this.nameFirst + " " + this.nameLast;
-    }
 }

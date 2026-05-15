@@ -19,7 +19,9 @@ public class UserService {
 
     public User findById(Integer id) {
         log.info("Find user by id");
+
         this.validation.findByIdValidation(id);
+
         return this.userRepository.findById(id)
                 .orElseThrow(() -> new FindUserException("Fail to find by id"));
     }

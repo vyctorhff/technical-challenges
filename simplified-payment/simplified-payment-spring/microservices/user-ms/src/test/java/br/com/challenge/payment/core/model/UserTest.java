@@ -1,7 +1,7 @@
 package br.com.challenge.payment.core.model;
 
 import br.com.challenge.payment.boundary.repository.entity.User;
-import br.com.challenge.payment.helpers.model.UserHelper;
+import br.com.challenge.payment.fixture.UserFixture;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,21 +10,13 @@ class UserTest {
 
     @Test
     void testShouldBeLojist() {
-        User user = UserHelper.createUserLojist();
+        User user = UserFixture.createUserLojist();
         assertTrue(user.isUserLojist());
     }
 
     @Test
     void testShouldUserCommon() {
-        User user = UserHelper.createUserCommon();
+        User user = UserFixture.createUserCommon();
         assertTrue(user.isUserCommon());
-    }
-
-    @Test
-    void testShouldConcatName() {
-        User user = UserHelper.createUserCommon();
-        String expected = user.getNameFirst() + " " + user.getNameLast();
-
-        assertEquals(expected, user.getCompleteName());
     }
 }

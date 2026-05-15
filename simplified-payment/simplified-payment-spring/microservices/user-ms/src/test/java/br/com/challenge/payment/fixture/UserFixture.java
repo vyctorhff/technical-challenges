@@ -1,9 +1,9 @@
-package br.com.challenge.payment.helpers.model;
+package br.com.challenge.payment.fixture;
 
 import br.com.challenge.payment.boundary.repository.entity.Account;
 import br.com.challenge.payment.boundary.repository.entity.User;
 
-public class UserHelper {
+public class UserFixture {
 
     public static User createBase() {
         var user = new User();
@@ -17,15 +17,25 @@ public class UserHelper {
         return user;
     }
 
-    public static User createUserCommon() {
+    public static User createByCnpj(String cnpj) {
         var user = createBase();
-        user.setCpf("00000000001");
+        user.setCnpj(cnpj);
+        user.setCpf(null);
         return user;
     }
 
-    public static User createUserLojist() {
+    public static User createByCpf(String cpf) {
         var user = createBase();
-        user.setCnpj("00000000000001");
+        user.setCnpj(null);
+        user.setCpf(cpf);
         return user;
+    }
+
+    public static User createUserCommon() {
+        return createByCpf("00000000001");
+    }
+
+    public static User createUserLojist() {
+        return createByCnpj("00000000000001");
     }
 }

@@ -7,16 +7,14 @@ public record UserResponseDTO(
         String name,
         String cpf,
         String cnpj,
-        WalletResponseDTO wallet,
         AccountResponseDTO account
 ) {
     public static UserResponseDTO fromUser(User user) {
         return new UserResponseDTO(
                 user.getId(),
-                user.getCompleteName(),
+                user.getName(),
                 user.getCpf(),
                 user.getCnpj(),
-                WalletResponseDTO.fromWallet(user.getWallet()),
                 AccountResponseDTO.fromAccount(user.getAccount())
         );
     }
