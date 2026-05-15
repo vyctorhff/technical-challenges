@@ -2,7 +2,6 @@ package br.com.challenge.payment.helpers.model;
 
 import br.com.challenge.payment.boundary.repository.entity.Account;
 import br.com.challenge.payment.boundary.repository.entity.User;
-import br.com.challenge.payment.core.model.Wallet;
 
 public class UserHelper {
 
@@ -14,9 +13,6 @@ public class UserHelper {
         user.setAccount(new Account());
         user.getAccount().setEmail("email@email.com");
         user.getAccount().setPassword("1231");
-
-        user.setWallet(new Wallet());
-        user.getWallet().setCurrentValue(100.0);
 
         return user;
     }
