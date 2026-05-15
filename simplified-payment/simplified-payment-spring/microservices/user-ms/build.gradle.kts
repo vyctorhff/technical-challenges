@@ -27,9 +27,8 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
-	implementation("org.springframework.kafka:spring-kafka")
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
-//    implementation("org.springframework.boot:spring-boot-h2console")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.16")
 
     implementation("org.apache.commons:commons-lang3:3.19.0")
 
@@ -43,6 +42,7 @@ dependencies {
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.kafka:spring-kafka-test")
+
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 

@@ -7,8 +7,7 @@ public class UserFixture {
 
     public static User createBase() {
         var user = new User();
-        user.setNameFirst("fist name");
-        user.setNameLast("last name");
+        user.setName("fist name");
 
         user.setAccount(new Account());
         user.getAccount().setEmail("email@email.com");

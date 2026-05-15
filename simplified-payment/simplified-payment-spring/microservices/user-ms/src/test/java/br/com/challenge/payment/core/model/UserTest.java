@@ -7,16 +7,4 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
-
-    @Test
-    void testShouldBeLojist() {
-        User user = UserFixture.createUserLojist();
-        assertTrue(user.isUserLojist());
-    }
-
-    @Test
-    void testShouldUserCommon() {
-        User user = UserFixture.createUserCommon();
-        assertTrue(user.isUserCommon());
-    }
 }

@@ -18,7 +18,7 @@ public class UserService {
     private final UserRepository userRepository;
 
     public User findById(Integer id) {
-        log.info("Find user by id");
+        log.info("Find user: [id={}]", id);
 
         this.validation.findByIdValidation(id);
 
