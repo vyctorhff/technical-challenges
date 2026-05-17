@@ -3,6 +3,8 @@ package br.com.challenge.payment.fixture;
 import br.com.challenge.payment.boundary.repository.entity.Account;
 import br.com.challenge.payment.boundary.repository.entity.User;
 
+import java.util.List;
+
 public class UserFixture {
 
     public static User createBase() {
@@ -36,5 +38,9 @@ public class UserFixture {
 
     public static User createUserLojist() {
         return createByCnpj("00000000000001");
+    }
+
+    public static List<User> createListUsers() {
+        return List.of(createUserCommon(), createUserLojist());
     }
 }

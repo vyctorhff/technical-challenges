@@ -1,9 +1,9 @@
-ms-user-up:
+run-user:
 	cd ms-user
 	./gradlew bootRun
 
-ms-transfer-up:
-	cd ms-transference
+run-transfer:
+	cd ms-transfer
 	./gradlew bootRun
 
 init-all:
@@ -12,4 +12,5 @@ init-all:
 clean-all:
 	cd ms-user
 	gradle clean
-	ms-transference/gradle clean
+	ms-transfer/gradle clean
+
