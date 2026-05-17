@@ -22,8 +22,6 @@ Files schema.sql and data.sql in resources/db
 
 ## to-do
 
-- feat: add endpoint to return two user
+- test: add integration tests
+- build: add docker and docker compose
 - feat: add endpoint to insert user
-- test: implement tests
-- chore: add metrics
-- build: add docker
