@@ -14,7 +14,7 @@ public class User {
     private Integer id;
 
     @Column("ID_EXTERNAL")
-    private String idExternal;
+    private String externalId;
 
     @Column("DS_NAME")
     private String name;
