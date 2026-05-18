@@ -4,7 +4,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.1.7"
 }
 
-group = "br.com.challenge"
+group = "br.com.challenge.simplified-pay.spring"
 version = "0.0.1-SNAPSHOT"
 description = "Technical challenge - project that allows bank transfers between users"
 
