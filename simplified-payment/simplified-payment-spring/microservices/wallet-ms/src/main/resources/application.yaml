@@ -1,0 +1,27 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ms-user
+  output:
+    ansi:
+      enabled: ALWAYS
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: sa
+    driverClassName: org.h2.Driver
+  sql:
+    init:
+      schema-locations: classpath:db/schema.sql
+      data-locations: classpath:db/data.sql
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+
+logging:
+  pattern:
+    console: "[%clr(%5p){}] %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wEx"
