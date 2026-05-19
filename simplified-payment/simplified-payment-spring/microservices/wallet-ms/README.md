@@ -23,4 +23,6 @@ Files schema.sql and data.sql in resources/db
 
 ## to-do
 
+- uc: transfer
+- uc: check 
 - build: add docker and docker compose
