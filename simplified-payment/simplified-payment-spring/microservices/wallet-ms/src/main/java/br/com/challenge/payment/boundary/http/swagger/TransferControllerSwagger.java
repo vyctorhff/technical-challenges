@@ -1,7 +1,6 @@
 package br.com.challenge.payment.boundary.http.swagger;
 
 import br.com.challenge.payment.boundary.http.dto.TransferRequestDTO;
-import br.com.challenge.payment.boundary.http.dto.TransferResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -42,5 +41,5 @@ public interface TransferControllerSwagger {
                     content = {@Content}
             )
     })
-    ResponseEntity<TransferResponseDTO> transfer(TransferRequestDTO requestDTO);
+    ResponseEntity<Void> transfer(TransferRequestDTO requestDTO);
 }
